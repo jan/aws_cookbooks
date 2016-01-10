@@ -7,11 +7,11 @@ node[:deploy].each do |application, deploy|
   end
 
   content = {
-    deploy[:environment]["RAILS_ENV"] => deploy[:environment_variables]
+    deploy[:environment]["RAILS_ENV"] => deploy[:environment_variables].to_hash
   }
   
   file ::File.join(deploy[:deploy_to], 'shared', 'config', 'application.yml') do
-    mode '0700'
+    mode '0600'
     owner deploy[:user]
     group deploy[:group]
     content YAML::dump(content)
