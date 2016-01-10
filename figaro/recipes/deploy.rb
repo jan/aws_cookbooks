@@ -20,6 +20,8 @@ node[:deploy].each do |application, deploy|
   
   link_name = ::File.join(deploy[:current_path], 'config', 'application.yml')
   link link_name do
+    owner deploy[:user]
+    group deploy[:group]
     to shared_file_name
   end
 end
