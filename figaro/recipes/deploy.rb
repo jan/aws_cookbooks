@@ -19,7 +19,7 @@ node[:deploy].each do |application, deploy|
   end
   
   link_name = ::File.join(deploy[:current_path], 'config', 'application.yml')
-  link shared_file_name do
-    to link_name
+  link link_name do
+    to shared_file_name
   end
 end
