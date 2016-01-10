@@ -1,1 +1,1 @@
-default[:queue_handler][:threads] = 5
+default[:delayed_job][:threads] = 5
