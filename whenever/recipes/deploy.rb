@@ -51,7 +51,7 @@ node[:deploy].each do |application, deploy|
   
   execute "Create cron jobs for #{application}" do
     cwd deploy[:current_path]
-    command "bundle exec whenever --set 'environment=#{deploy[:environment]["RAILS_ENV"]}&app_name=#{application}&hostname=#{node[:opsworks][:instance][:hostname]}&hostnr=#{host_number}&instances=#{number_of_instances}' --roles '#{roles.join(",")}' --update-crontab '#{application}'"
+    command "bundle exec whenever --set 'environment=#{deploy[:environment]["RAILS_ENV"]}&current_path=#{deploy[:current_path]}&app_name=#{application}&hostname=#{node[:opsworks][:instance][:hostname]}&hostnr=#{host_number}&instances=#{number_of_instances}' --roles '#{roles.join(",")}' --update-crontab '#{application}'"
     user deploy[:user]
   end
 end
